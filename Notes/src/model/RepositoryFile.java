@@ -5,7 +5,7 @@ import java.util.List;
 
 public class RepositoryFile implements Repository {
 
-    private NoteMapper mapper = new NoteMapper();
+    private NoteMapper mapper;
 
     private FileOperation fileOperation;
 
