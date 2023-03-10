@@ -10,8 +10,9 @@ public class RepositoryFile implements Repository {
     private FileOperation fileOperation;
 
 
-    public RepositoryFile(FileOperation fileOperation) {
+    public RepositoryFile(FileOperation fileOperation, NoteMapper mapper) {
         this.fileOperation = fileOperation;
+        this.mapper = mapper;
     }
 
 
@@ -31,7 +32,7 @@ public class RepositoryFile implements Repository {
         int max = 0;
         for (Note item : notes) {
             int id = Integer.parseInt(item.getId());
-            if (max < id){
+            if (max < id) {
                 max = id;
             }
         }
@@ -46,7 +47,7 @@ public class RepositoryFile implements Repository {
     @Override
     public void saveNotes(List<Note> notes) {
         List<String> lines = new ArrayList<>();
-        for (Note item: notes) {
+        for (Note item : notes) {
             lines.add(mapper.map(item));
         }
         fileOperation.saveAllLines(lines);
